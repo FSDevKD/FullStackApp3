@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/e.css">
+    <title>Edit Item</title>
+</head>
+<body>
+
+<header>
+  <h1>Edit Item</h1>
+  <a href="/users/logout" style="color: #fff; text-decoration: none;" class="l">Logout</a>
+</header>  
+
+<div class="container">
+
+    <div class="p"><p>Take your time input what you want. Remember only insert img urls or you will get a error. </p></div>
+    <div class="f">
+    <form action="/items/<%= item._id %>/edit" method="POST">
+        <input type="text" placeholder="Item name" name="itemName" value="<%= item.itemName %>">
+        <input type="number" placeholder="Cost" name="itemCost" step="0.01" min="0" value="<%= item.itemCost %>">
+        <input type="text" placeholder="Image URL" name="imageUrl" value="<%= item.imageUrl %>">
+        <button type="submit">Update</button>
+    </form>
+    </div>
+
+    <div id="preview">
+        <img id="previewImage" src="<%= item.imageUrl %>" alt="<%= item.itemName %>" style="width: 100px; height: auto;">
+    </div>
+
+</div>
+
+<footer>
+  Made with &hearts; in Philly | &copy; <a href="http://fsdevkd.com">FsDevKD</a>
+</footer>
+
+</body>
+</html>

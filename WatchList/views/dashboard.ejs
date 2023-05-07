@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/d.css">
+    <title>What we shopping?</title>
+</head>
+<body>
+
+<header>
+  <h1>Watchlist</h1>
+  <a href="/users/logout" style="color: #fff; text-decoration: none;" class="l">Logout</a>
+</header>  
+
+<div class="container">
+<p>Welcome, How are you? Feel free to add more or take some away <%= user.name %>!</p>
+</div>
+
+<div class="container">
+
+  <h2>Add an item</h2>
+<% if (user) { %>
+  <form action="/item" method="POST">
+    <input type="text" placeholder="Item name" name="itemName">
+    <input type="number" placeholder="Cost" name="itemCost" step="0.01" min="0">
+    <input type="text" placeholder="Only insert img urls or you will get a error." name="imageUrl">
+    <button type="submit">Submit</button>
+  </form>
+<% } %>
+
+</div>
+
+<div class="container">
+<h3>Items</h3>
+<ul class="items">
+  <% for(var i=0; i<items.length; i++) {%>
+    <li class="item">
+      <span><%= items[i].itemName %></span>
+      <span>$<%= items[i].itemCost.toFixed(2) %></span>
+      <img src="<%= items[i].imageUrl %>" alt="<%= items[i].itemName %>" style="width: 100px; height: auto;">
+      <form action="/items/<%= items[i]._id %>/delete" method="POST">
+        <button type="submit" aria-hidden="true">Delete</button>
+      </form>
+      <form action="/items/<%= items[i]._id %>/edit" method="GET">
+        <button type="submit" aria-hidden="true">Edit</button>
+      </form>
+    </li>
+  <% } %>
+</ul>
+</div>
+
+<footer>
+  Made with &hearts; in Philly | &copy; <a href="http://fsdevkd.com">FsDevKD</a>
+</footer>
+
+</body>
+</html>
